@@ -1,7 +1,44 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
+import { Registrar } from './Registrar'
+import { Listar }from './Listar'
+import { Estadistica }from './Estadistica'
 
-export const Menu = () => {
+
+
+export const Menu = (props) => {
+
+  const [reg,setReg]= useState("");
+  const [list,setList]= useState("");
+  const [est,setEst]= useState("");
+
+  function cerrarSesion(){
+    document.getElementById("caja_menu").style.display="none";
+    document.getElementById("form_login").style.display="block";
+    document.getElementById("txtusu").value="";
+    document.getElementById("txtpass").value="";
+    document.getElementById("txtusu").focus();
+  }
+
+  function op_Registrar(){
+   setReg("1");
+   setList("0");
+   setEst("0");
+  }
+  
+  function op_Listar(){
+    setReg("0");
+    setList("1");
+    setEst("0");
+   }
+
+   function op_Estadistica(){
+    setReg("0");
+    setList("0");
+    setEst("1");
+   }
+
+
   return (
     
 
@@ -10,10 +47,10 @@ export const Menu = () => {
     <div id="caja_menu" style={{textAlign:"left"}}>
 
     <strong className="h3">
-      Bienvenido Usuario : 
+      Bienvenido Usuario : {props.usu}
     </strong>
               
-    <nav className="navbar navbar-expand-lg navbar-light bg-light" style={{marginTop:20}}>
+    <nav className="navbar navbar-never-expand-lg navbar-light bg-light" style={{marginTop:20}}>
       <div className="container-fluid">
 
         <label className="navbar-brand  h5" href=" ">Menú Principal</label>
@@ -23,15 +60,19 @@ export const Menu = () => {
         </button>
         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div className="navbar-nav">
-            <NavLink to="" className="nav-link  h5  text-center"  >Registrar</NavLink>
-            <NavLink to="" className="nav-link  h5  text-center"  >Listar</NavLink>
-            <NavLink to="" className="nav-link  h5  text-center"  >Estadistica</NavLink>
-            <a className="nav-link  h5  text-center"  style={{color:"blue"}}  href=" "  >Cerrar Sesión</a>
+            <NavLink to="" className="nav-link  h5  text-center" onClick={op_Registrar}  >Registrar</NavLink>
+            <NavLink to="" className="nav-link  h5  text-center" onClick={op_Listar} >Listar</NavLink>
+            <NavLink to="" className="nav-link  h5  text-center" onClick={op_Estadistica}  >Estadistica</NavLink>
+            <a className="nav-link  h5  text-center"  style={{color:"blue"}}  href=" " onClick={cerrarSesion} >Cerrar Sesión</a>
           </div>
         </div>
       </div>
     </nav>
   </div>
+
+    { reg==="1" && <Registrar/> }
+    { list==="1" && <Listar/> }
+    { est==="1" && <Estadistica/> }
 
 </>
   

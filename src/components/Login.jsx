@@ -3,7 +3,7 @@ import {Menu} from './Menu'
 
 export const Login = () => {
 
-  var [miLogin, setLogin] = useState("false");
+  const [miLogin, setMiLogin] = useState("false");
   const [usu,setUsu]=useState("");
   const [pass, setPass]=useState("");
   function iniciarSesion(e){
@@ -15,10 +15,10 @@ export const Login = () => {
    alert("Debes indicar Usuario y Clave");
   }else{
     if(usu==="Admin" && pass==="1234" ){
-      setLogin="true";
+      setMiLogin("true");
       document.getElementById("form_login").style.display="none";
     }else{
-      setLogin="false";
+      setMiLogin("false");
       alert("Error de Usuario y Constraseña");
       document.getElementById("txtusu").value="";
       document.getElementById("txtpass").value="";
@@ -45,6 +45,8 @@ export const Login = () => {
         </div><br/>
         <input type="submit"  className="btn btn-primary" value="Login" onClick={iniciarSesion}/>
     </form>
+
+    { miLogin==="true" && <Menu usu={usu}/> }
 
 </div>
 
