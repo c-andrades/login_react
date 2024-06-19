@@ -50,7 +50,7 @@ export const Menu = (props) => {
       Bienvenido Usuario : {props.usu}
     </strong>
               
-    <nav className="navbar navbar-never-expand-lg navbar-light bg-light" style={{marginTop:20}}>
+    <nav className="navbar navbar-expand-lg navbar-light bg-light" style={{marginTop:20}}>
       <div className="container-fluid">
 
         <label className="navbar-brand  h5" href=" ">Menú Principal</label>
