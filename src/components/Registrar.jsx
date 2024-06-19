@@ -2,7 +2,16 @@ import React, {useState, useEffect} from 'react'
 
 export const Registrar = () => {
 
-const [registroslogin, setRegistroslogin]=useState([]);
+const obtenerRegistros =()=>{
+  var datos=localStorage.getItem("registroslogin");
+  if(datos){
+   return JSON.parse(datos);
+  }else{
+    return [];
+  }
+}  
+
+const [registroslogin, setRegistroslogin]=useState(obtenerRegistros());
 
 const [titulo, setTitulo]=useState("");
 const [estilo, setEstilo]=useState("");
